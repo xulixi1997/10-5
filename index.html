@@ -1,0 +1,802 @@
+<!DOCTYPE html>
+<html lang="zh-CN" class="scroll-smooth">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>重庆星泓泰网络科技有限公司 - 数字化转型的构建者</title>
+    <meta name="description" content="重庆星泓泰网络科技有限公司，专注于大数据、云计算、AI智能解决方案及企业数字化转型服务。">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    
+    <!-- Google Generative AI Library -->
+    <script type="importmap">
+      {
+        "imports": {
+          "@google/generative-ai": "https://esm.run/@google/generative-ai"
+        }
+      }
+    </script>
+
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['"Inter"', '"PingFang SC"', '"Microsoft YaHei"', 'sans-serif'],
+                        mono: ['"JetBrains Mono"', 'monospace'],
+                    },
+                    colors: {
+                        // 深空/数据背景色系
+                        space: {
+                            900: '#050511',
+                            800: '#0f1029',
+                            700: '#1a1b4b',
+                        },
+                        // 科技蓝/霓虹紫 (Primary & Accent)
+                        neon: {
+                            blue: '#00f0ff',
+                            purple: '#7000ff',
+                            pink: '#ff00aa',
+                        },
+                        glass: {
+                            100: 'rgba(255, 255, 255, 0.05)',
+                            200: 'rgba(255, 255, 255, 0.1)',
+                            border: 'rgba(255, 255, 255, 0.15)',
+                        }
+                    },
+                    backgroundImage: {
+                        'cyber-grid': "url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAiIGhlaWdodD0iNDAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGRlZnM+PHBhdHRlcm4gaWQ9ImgridIiB4PSIwIiB5PSIwIiB3aWR0aD0iNDAiIGhlaWdodD0iNDAiIHBhdHRlcm5Vbml0cz0idXNlclNwYWNlT25Vc2UiPjxwYXRoIGQ9Ik0wIDBoNDB2NDBIMHoiIGZpbGw9Im5vbmUiLz48cGF0aCBkPSJNMCA0MEw0MCAwSDIwTDAgMjBNNDAgNDBWMjBMMjAgNDAiIHN0cm9rZT0icmdiYSgwLDI0MCwyNTUsMC4wNSkiIHN0cm9rZS13aWR0aD0iMSIvPjwvcGF0dGVybj48L2RlZnM+PHJlY3Qgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgZmlsbD0idXJsKCNncmlkKSIvPjwvc3ZnPg==')",
+                        'aurora': 'linear-gradient(135deg, #050511 0%, #1a1b4b 50%, #0f1029 100%)',
+                        'glow-conic': 'conic-gradient(from 180deg at 50% 50%, #2a8af6 0deg, #a853ba 180deg, #e92a67 360deg)',
+                    },
+                    animation: {
+                        'blob': 'blob 7s infinite',
+                        'float-slow': 'float 8s ease-in-out infinite',
+                        'fade-in-up': 'fadeInUp 0.8s ease-out forwards',
+                        'pulse-glow': 'pulseGlow 2s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                    },
+                    keyframes: {
+                        blob: {
+                            '0%': { transform: 'translate(0px, 0px) scale(1)' },
+                            '33%': { transform: 'translate(30px, -50px) scale(1.1)' },
+                            '66%': { transform: 'translate(-20px, 20px) scale(0.9)' },
+                            '100%': { transform: 'translate(0px, 0px) scale(1)' },
+                        },
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0)' },
+                            '50%': { transform: 'translateY(-20px)' },
+                        },
+                        fadeInUp: {
+                            '0%': { opacity: '0', transform: 'translateY(20px)' },
+                            '100%': { opacity: '1', transform: 'translateY(0)' },
+                        },
+                        pulseGlow: {
+                            '0%, 100%': { opacity: '1', boxShadow: '0 0 20px rgba(0, 240, 255, 0.2)' },
+                            '50%': { opacity: '0.5', boxShadow: '0 0 40px rgba(0, 240, 255, 0.5)' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        /* 玻璃拟态 */
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+        
+        .glass-nav {
+            background: rgba(5, 5, 17, 0.7);
+            backdrop-filter: blur(16px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        /* 滚动条 */
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: #050511; }
+        ::-webkit-scrollbar-thumb { background: #3b82f6; border-radius: 3px; }
+        ::-webkit-scrollbar-thumb:hover { background: #00f0ff; }
+
+        /* 文字渐变 */
+        .text-gradient {
+            background: linear-gradient(to right, #00f0ff, #7000ff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        .text-gradient-gold {
+            background: linear-gradient(to right, #FCD34D, #F59E0B);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        /* 观察者动画类 */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease-out;
+        }
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+
+<body class="bg-space-900 text-slate-200 font-sans antialiased selection:bg-neon-purple selection:text-white overflow-x-hidden">
+
+    <!-- 背景动态光斑 -->
+    <div class="fixed inset-0 z-0 pointer-events-none overflow-hidden">
+        <div class="absolute top-0 left-1/4 w-96 h-96 bg-neon-blue/20 rounded-full mix-blend-screen filter blur-3xl opacity-30 animate-blob"></div>
+        <div class="absolute top-0 right-1/4 w-96 h-96 bg-neon-purple/20 rounded-full mix-blend-screen filter blur-3xl opacity-30 animate-blob animation-delay-2000"></div>
+        <div class="absolute -bottom-32 left-1/3 w-96 h-96 bg-neon-pink/20 rounded-full mix-blend-screen filter blur-3xl opacity-30 animate-blob animation-delay-4000"></div>
+        <div class="absolute inset-0 bg-cyber-grid opacity-20"></div>
+    </div>
+
+    <!-- Module 1: Navigation -->
+    <nav id="navbar" class="fixed w-full z-50 transition-all duration-300 py-4 glass-nav">
+        <div class="container mx-auto px-6 flex justify-between items-center">
+            <!-- Logo -->
+            <div class="flex items-center gap-3 cursor-pointer" onclick="scrollToSection('hero')">
+                <div class="relative w-10 h-10 flex items-center justify-center">
+                    <div class="absolute inset-0 bg-gradient-to-tr from-neon-blue to-neon-purple rounded-lg opacity-80 blur-sm"></div>
+                    <div class="relative bg-space-900 rounded-lg w-[38px] h-[38px] flex items-center justify-center border border-white/10">
+                        <i data-lucide="cpu" class="text-neon-blue w-6 h-6"></i>
+                    </div>
+                </div>
+                <div class="flex flex-col">
+                    <span class="text-xl font-bold tracking-wide text-white leading-none">星泓泰<span class="text-neon-blue">.</span>网络</span>
+                    <span class="text-[10px] text-slate-400 tracking-[0.15em] leading-none mt-1 font-mono uppercase">XingHongTai Tech</span>
+                </div>
+            </div>
+
+            <!-- Desktop Menu -->
+            <div class="hidden lg:flex items-center gap-10">
+                <a href="#hero" class="text-sm font-medium text-slate-300 hover:text-neon-blue transition-colors relative group">
+                    首页 <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-neon-blue transition-all group-hover:w-full"></span>
+                </a>
+                <a href="#about" class="text-sm font-medium text-slate-300 hover:text-neon-blue transition-colors relative group">关于我们</a>
+                <a href="#services" class="text-sm font-medium text-slate-300 hover:text-neon-blue transition-colors relative group">核心业务</a>
+                <a href="#solutions" class="text-sm font-medium text-slate-300 hover:text-neon-blue transition-colors relative group">解决方案</a>
+                <a href="#partners" class="text-sm font-medium text-slate-300 hover:text-neon-blue transition-colors relative group">合作伙伴</a>
+                <a href="#contact" class="px-6 py-2.5 rounded-full bg-gradient-to-r from-neon-blue to-neon-purple hover:from-blue-400 hover:to-purple-500 text-white text-sm font-bold transition-all shadow-[0_0_20px_rgba(112,0,255,0.3)] hover:shadow-[0_0_30px_rgba(112,0,255,0.5)]">
+                    立即咨询
+                </a>
+            </div>
+
+            <!-- Mobile Menu Button -->
+            <button class="lg:hidden text-white" onclick="toggleMobileMenu()">
+                <i data-lucide="menu" size="28"></i>
+            </button>
+        </div>
+
+        <!-- Mobile Dropdown -->
+        <div id="mobile-menu" class="hidden absolute top-full left-0 w-full bg-space-800/95 backdrop-blur-xl border-b border-white/10 p-6 flex flex-col gap-4 shadow-2xl">
+            <a href="#hero" onclick="toggleMobileMenu()" class="text-slate-300 hover:text-neon-blue">首页</a>
+            <a href="#services" onclick="toggleMobileMenu()" class="text-slate-300 hover:text-neon-blue">核心业务</a>
+            <a href="#solutions" onclick="toggleMobileMenu()" class="text-slate-300 hover:text-neon-blue">解决方案</a>
+            <a href="#contact" onclick="toggleMobileMenu()" class="text-neon-blue font-bold">联系我们</a>
+        </div>
+    </nav>
+
+    <!-- Module 2: Hero Section (Immersive Digital Flow) -->
+    <section id="hero" class="relative min-h-screen flex items-center pt-20 overflow-hidden">
+        <div class="container mx-auto px-6 relative z-10">
+            <div class="flex flex-col lg:flex-row items-center gap-16">
+                <div class="lg:w-1/2 animate-fade-in-up">
+                    <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-neon-blue/30 bg-neon-blue/5 text-neon-blue text-xs font-bold mb-6">
+                        <span class="w-2 h-2 rounded-full bg-neon-blue animate-pulse"></span>
+                        数字未来，此刻定义
+                    </div>
+                    <h1 class="text-5xl md:text-6xl lg:text-7xl font-bold text-white leading-tight mb-6">
+                        让数据产生<br>
+                        <span class="text-gradient">颠覆性价值</span>
+                    </h1>
+                    <p class="text-lg text-slate-400 mb-8 leading-relaxed max-w-xl">
+                        重庆星泓泰网络科技有限公司，致力于将前沿的人工智能、大数据与云计算技术深度融合，为企业构建坚不可摧的数字基座，驱动业务指数级增长。
+                    </p>
+                    <div class="flex flex-col sm:flex-row gap-4">
+                        <a href="#services" class="group px-8 py-4 rounded-lg bg-white text-space-900 font-bold hover:bg-slate-200 transition-colors flex items-center justify-center gap-2">
+                            探索服务 <i data-lucide="arrow-right" class="group-hover:translate-x-1 transition-transform"></i>
+                        </a>
+                        <a href="#contact" class="px-8 py-4 rounded-lg border border-white/20 hover:border-neon-blue hover:text-neon-blue text-white font-bold transition-all backdrop-blur-sm flex items-center justify-center gap-2">
+                            <i data-lucide="play-circle" size="20"></i> 观看演示
+                        </a>
+                    </div>
+                </div>
+                <!-- Hero Visual -->
+                <div class="lg:w-1/2 relative animate-float-slow hidden md:block">
+                    <div class="relative w-full aspect-square">
+                        <div class="absolute inset-0 bg-gradient-to-r from-neon-blue to-neon-purple rounded-full opacity-20 blur-3xl"></div>
+                        <!-- REPLACED IMAGE 1: Abstract Data Particles/Network -->
+                        <img src="https://images.unsplash.com/photo-1510511459019-5dda7724fd87?q=80&w=2070&auto=format&fit=crop" 
+                             alt="Data Network Visualization" 
+                             class="relative z-10 rounded-2xl border border-white/10 shadow-2xl shadow-neon-purple/20 mask-image-gradient">
+                        <!-- Floating Code Cards -->
+                        <div class="absolute -left-8 bottom-20 p-4 glass-panel rounded-xl shadow-lg animate-bounce" style="animation-duration: 3s;">
+                            <div class="flex items-center gap-3">
+                                <div class="w-10 h-10 rounded bg-green-500/20 flex items-center justify-center text-green-400"><i data-lucide="shield-check"></i></div>
+                                <div>
+                                    <div class="text-xs text-slate-400">网络安全状态</div>
+                                    <div class="text-white font-bold">100% 安全</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="absolute -right-4 top-20 p-4 glass-panel rounded-xl shadow-lg animate-bounce" style="animation-duration: 4s;">
+                            <div class="flex items-center gap-3">
+                                <div class="w-10 h-10 rounded bg-neon-blue/20 flex items-center justify-center text-neon-blue"><i data-lucide="cpu"></i></div>
+                                <div>
+                                    <div class="text-xs text-slate-400">AI 算力引擎</div>
+                                    <div class="text-white font-bold">运行中...</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Module 3: Data Statistics (Glass Strip) -->
+    <section class="relative z-20 -mt-10">
+        <div class="container mx-auto px-6">
+            <div class="glass-panel rounded-2xl p-8 md:p-12 grid grid-cols-2 md:grid-cols-4 gap-8 shadow-[0_0_50px_rgba(0,0,0,0.5)]">
+                <div class="text-center border-r border-white/10 last:border-0">
+                    <div class="text-4xl font-bold text-white mb-1">10<span class="text-neon-blue text-2xl">+</span></div>
+                    <div class="text-xs text-slate-400 uppercase tracking-wider">年技术沉淀</div>
+                </div>
+                <div class="text-center border-r border-white/10 last:border-0">
+                    <div class="text-4xl font-bold text-white mb-1">500<span class="text-neon-purple text-2xl">+</span></div>
+                    <div class="text-xs text-slate-400 uppercase tracking-wider">企业合作伙伴</div>
+                </div>
+                <div class="text-center border-r border-white/10 last:border-0">
+                    <div class="text-4xl font-bold text-white mb-1">50<span class="text-neon-pink text-2xl">项</span></div>
+                    <div class="text-xs text-slate-400 uppercase tracking-wider">软著与专利</div>
+                </div>
+                <div class="text-center">
+                    <div class="text-4xl font-bold text-white mb-1">24<span class="text-neon-blue text-2xl">/7</span></div>
+                    <div class="text-xs text-slate-400 uppercase tracking-wider">智能运维响应</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Module 4: About Us (Split Layout) -->
+    <section id="about" class="py-24 relative">
+        <div class="container mx-auto px-6">
+            <div class="flex flex-col md:flex-row items-center gap-12">
+                <div class="md:w-1/2 reveal">
+                    <div class="relative">
+                        <div class="absolute -inset-4 bg-gradient-to-br from-neon-blue to-transparent opacity-20 rounded-lg blur-lg"></div>
+                        <!-- REPLACED IMAGE 2: Cyber/Tech Tunnel Concept -->
+                        <img src="https://images.unsplash.com/photo-1550751827-4bd374c3f58b?q=80&w=2070&auto=format&fit=crop" class="w-full rounded-lg border border-white/10 relative z-10" alt="Future Technology">
+                    </div>
+                </div>
+                <div class="md:w-1/2 reveal">
+                    <h2 class="text-neon-blue font-bold tracking-widest uppercase text-sm mb-3">关于星泓泰</h2>
+                    <h3 class="text-3xl md:text-4xl font-bold text-white mb-6">以科技之名<br>构建数字世界新秩序</h3>
+                    <p class="text-slate-400 mb-6 leading-relaxed">
+                        重庆星泓泰网络科技有限公司成立于科技蓬勃发展的西南重镇——重庆。作为一个技术驱动型企业，“星”代表我们对浩瀚数据宇宙的探索，“泓”寓意着深厚的技术积累与无限的潜能，“泰”则象征着我们为客户提供的稳如泰山的网络安全保障。
+                    </p>
+                    <p class="text-slate-400 mb-8 leading-relaxed">
+                        我们不仅仅是软件开发者，更是企业数字化转型的战略架构师。从底层网络搭建到顶层AI应用，星泓泰始终站在技术革新的最前沿。
+                    </p>
+                    <div class="flex gap-8">
+                        <div>
+                            <h4 class="text-white font-bold text-lg mb-1">使命</h4>
+                            <p class="text-xs text-slate-500">用代码连接智慧与现实</p>
+                        </div>
+                        <div>
+                            <h4 class="text-white font-bold text-lg mb-1">愿景</h4>
+                            <p class="text-xs text-slate-500">成为西南地区数字基建领跑者</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Module 5: Core Services (Grid with Hover Effects) -->
+    <section id="services" class="py-24 bg-space-800/50">
+        <div class="container mx-auto px-6">
+            <div class="text-center max-w-3xl mx-auto mb-16 reveal">
+                <h2 class="text-neon-purple font-bold tracking-widest uppercase text-sm mb-3">核心业务</h2>
+                <h3 class="text-3xl md:text-4xl font-bold text-white">全栈式数字解决方案</h3>
+                <p class="text-slate-400 mt-4">覆盖从基础设施到智能应用的完整技术生态链</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Service 1 -->
+                <div class="group p-8 rounded-2xl bg-space-900 border border-white/5 hover:border-neon-blue/50 transition-all duration-300 hover:-translate-y-2 hover:shadow-[0_10px_40px_rgba(0,240,255,0.1)] reveal">
+                    <div class="w-14 h-14 rounded-xl bg-space-800 flex items-center justify-center mb-6 text-neon-blue group-hover:scale-110 transition-transform">
+                        <i data-lucide="cloud-cog" size="32"></i>
+                    </div>
+                    <h4 class="text-xl font-bold text-white mb-3">云计算与服务器托管</h4>
+                    <p class="text-slate-400 text-sm leading-relaxed mb-4">提供高性能、高可用的弹性计算服务，无论是私有云部署还是混合云架构，确保您的业务永续在线。</p>
+                    <a href="#" class="text-neon-blue text-sm font-bold flex items-center gap-1 group-hover:gap-2 transition-all">了解详情 <i data-lucide="chevron-right" size="14"></i></a>
+                </div>
+
+                <!-- Service 2 -->
+                <div class="group p-8 rounded-2xl bg-space-900 border border-white/5 hover:border-neon-purple/50 transition-all duration-300 hover:-translate-y-2 hover:shadow-[0_10px_40px_rgba(112,0,255,0.1)] reveal">
+                    <div class="w-14 h-14 rounded-xl bg-space-800 flex items-center justify-center mb-6 text-neon-purple group-hover:scale-110 transition-transform">
+                        <i data-lucide="database" size="32"></i>
+                    </div>
+                    <h4 class="text-xl font-bold text-white mb-3">大数据分析平台</h4>
+                    <p class="text-slate-400 text-sm leading-relaxed mb-4">打破数据孤岛，通过深度挖掘与可视化分析，将海量杂乱数据转化为可执行的商业决策智慧。</p>
+                    <a href="#" class="text-neon-purple text-sm font-bold flex items-center gap-1 group-hover:gap-2 transition-all">了解详情 <i data-lucide="chevron-right" size="14"></i></a>
+                </div>
+
+                <!-- Service 3 -->
+                <div class="group p-8 rounded-2xl bg-space-900 border border-white/5 hover:border-neon-pink/50 transition-all duration-300 hover:-translate-y-2 hover:shadow-[0_10px_40px_rgba(255,0,170,0.1)] reveal">
+                    <div class="w-14 h-14 rounded-xl bg-space-800 flex items-center justify-center mb-6 text-neon-pink group-hover:scale-110 transition-transform">
+                        <i data-lucide="brain-circuit" size="32"></i>
+                    </div>
+                    <h4 class="text-xl font-bold text-white mb-3">AI 智能算法定制</h4>
+                    <p class="text-slate-400 text-sm leading-relaxed mb-4">从图像识别到自然语言处理，我们为您定制专属AI模型，赋能业务流程自动化与智能化。</p>
+                    <a href="#" class="text-neon-pink text-sm font-bold flex items-center gap-1 group-hover:gap-2 transition-all">了解详情 <i data-lucide="chevron-right" size="14"></i></a>
+                </div>
+
+                <!-- Service 4 -->
+                <div class="group p-8 rounded-2xl bg-space-900 border border-white/5 hover:border-blue-400/50 transition-all duration-300 hover:-translate-y-2 reveal">
+                    <div class="w-14 h-14 rounded-xl bg-space-800 flex items-center justify-center mb-6 text-blue-400 group-hover:scale-110 transition-transform">
+                        <i data-lucide="smartphone" size="32"></i>
+                    </div>
+                    <h4 class="text-xl font-bold text-white mb-3">移动端与软件开发</h4>
+                    <p class="text-slate-400 text-sm leading-relaxed mb-4">iOS、Android、Web全端覆盖，打造极致用户体验的数字化产品，助力企业抢占移动互联网红利。</p>
+                </div>
+
+                 <!-- Service 5 -->
+                 <div class="group p-8 rounded-2xl bg-space-900 border border-white/5 hover:border-emerald-400/50 transition-all duration-300 hover:-translate-y-2 reveal">
+                    <div class="w-14 h-14 rounded-xl bg-space-800 flex items-center justify-center mb-6 text-emerald-400 group-hover:scale-110 transition-transform">
+                        <i data-lucide="shield-alert" size="32"></i>
+                    </div>
+                    <h4 class="text-xl font-bold text-white mb-3">网络安全防御体系</h4>
+                    <p class="text-slate-400 text-sm leading-relaxed mb-4">渗透测试、等保合规、防火墙部署，构建主动防御体系，守护企业核心数字资产。</p>
+                </div>
+
+                 <!-- Service 6 -->
+                 <div class="group p-8 rounded-2xl bg-space-900 border border-white/5 hover:border-yellow-400/50 transition-all duration-300 hover:-translate-y-2 reveal">
+                    <div class="w-14 h-14 rounded-xl bg-space-800 flex items-center justify-center mb-6 text-yellow-400 group-hover:scale-110 transition-transform">
+                        <i data-lucide="network" size="32"></i>
+                    </div>
+                    <h4 class="text-xl font-bold text-white mb-3">物联网 (IoT) 解决方案</h4>
+                    <p class="text-slate-400 text-sm leading-relaxed mb-4">万物互联，实时监控。为工业制造、智慧园区提供传感器数据采集与远程控制方案。</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Module 6: Solutions (Tabs/Showcase) -->
+    <section id="solutions" class="py-24 relative overflow-hidden">
+        <div class="absolute top-0 right-0 w-1/2 h-full bg-gradient-to-l from-space-800 to-transparent -z-10"></div>
+        <div class="container mx-auto px-6">
+            <div class="flex flex-col lg:flex-row gap-12">
+                <div class="lg:w-1/3 reveal">
+                    <h2 class="text-neon-blue font-bold tracking-widest uppercase text-sm mb-3">行业赋能</h2>
+                    <h3 class="text-3xl md:text-4xl font-bold text-white mb-6">深入场景<br>解决实际痛点</h3>
+                    <p class="text-slate-400 mb-8">我们不仅懂技术，更懂行业。针对不同领域的特性，星泓泰推出了定制化的行业解决方案。</p>
+                    
+                    <div class="space-y-4">
+                        <div class="p-4 rounded-lg bg-white/5 border border-white/10 cursor-pointer hover:bg-white/10 hover:border-neon-blue transition-all">
+                            <h4 class="font-bold text-white flex justify-between items-center">智慧城市 <i data-lucide="arrow-right" class="w-4 h-4 text-neon-blue"></i></h4>
+                            <p class="text-xs text-slate-400 mt-1">交通疏导、安防监控、公共服务数字化</p>
+                        </div>
+                        <div class="p-4 rounded-lg bg-white/5 border border-white/10 cursor-pointer hover:bg-white/10 hover:border-neon-purple transition-all">
+                            <h4 class="font-bold text-white flex justify-between items-center">智能制造 <i data-lucide="arrow-right" class="w-4 h-4 text-neon-purple"></i></h4>
+                            <p class="text-xs text-slate-400 mt-1">生产线自动化、良品率分析、供应链管理</p>
+                        </div>
+                        <div class="p-4 rounded-lg bg-white/5 border border-white/10 cursor-pointer hover:bg-white/10 hover:border-neon-pink transition-all">
+                            <h4 class="font-bold text-white flex justify-between items-center">金融科技 <i data-lucide="arrow-right" class="w-4 h-4 text-neon-pink"></i></h4>
+                            <p class="text-xs text-slate-400 mt-1">风险控制、高频交易系统、客户画像</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="lg:w-2/3 reveal">
+                    <div class="relative h-[500px] rounded-2xl overflow-hidden border border-white/10 shadow-2xl group">
+                        <img src="https://images.unsplash.com/photo-1480694313141-fce5e697ee25?q=80&w=2070&auto=format&fit=crop" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105">
+                        <div class="absolute inset-0 bg-gradient-to-t from-space-900 via-space-900/50 to-transparent"></div>
+                        <div class="absolute bottom-0 left-0 p-8 w-full">
+                            <div class="inline-block px-3 py-1 bg-neon-blue text-space-900 text-xs font-bold rounded mb-3">成功案例</div>
+                            <h3 class="text-2xl font-bold text-white mb-2">重庆某大型物流园区智慧中枢</h3>
+                            <p class="text-slate-300 max-w-2xl">通过部署IoT传感器与AI调度算法，帮助该园区实现了车辆调度自动化，整体运营效率提升35%，人力成本降低20%。</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Module 7: Tech Stack (Marquee/Icons) -->
+    <section class="py-16 bg-space-800 border-y border-white/5">
+        <div class="container mx-auto px-6 text-center">
+            <h3 class="text-slate-500 text-sm font-mono uppercase tracking-widest mb-10">Powered By Advanced Technology</h3>
+            <div class="flex flex-wrap justify-center gap-8 md:gap-16 opacity-70 grayscale hover:grayscale-0 transition-all duration-500">
+                <!-- Tech Icons (Using Text/Lucide for simplicity, usually SVG logos) -->
+                <div class="flex flex-col items-center gap-2 group">
+                    <i data-lucide="code-2" size="40" class="text-blue-500 group-hover:scale-110 transition-transform"></i>
+                    <span class="text-xs font-bold">React/Vue</span>
+                </div>
+                <div class="flex flex-col items-center gap-2 group">
+                    <i data-lucide="box" size="40" class="text-green-500 group-hover:scale-110 transition-transform"></i>
+                    <span class="text-xs font-bold">Node.js</span>
+                </div>
+                <div class="flex flex-col items-center gap-2 group">
+                    <i data-lucide="database" size="40" class="text-orange-500 group-hover:scale-110 transition-transform"></i>
+                    <span class="text-xs font-bold">PostgreSQL</span>
+                </div>
+                <div class="flex flex-col items-center gap-2 group">
+                    <i data-lucide="container" size="40" class="text-blue-400 group-hover:scale-110 transition-transform"></i>
+                    <span class="text-xs font-bold">Docker</span>
+                </div>
+                <div class="flex flex-col items-center gap-2 group">
+                    <i data-lucide="cpu" size="40" class="text-yellow-500 group-hover:scale-110 transition-transform"></i>
+                    <span class="text-xs font-bold">TensorFlow</span>
+                </div>
+                <div class="flex flex-col items-center gap-2 group">
+                    <i data-lucide="cloud" size="40" class="text-indigo-500 group-hover:scale-110 transition-transform"></i>
+                    <span class="text-xs font-bold">AWS/AliCloud</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Module 8: Process (Steps) -->
+    <section class="py-24">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16 reveal">
+                <h2 class="text-neon-blue font-bold tracking-widest uppercase text-sm mb-3">服务流程</h2>
+                <h3 class="text-3xl font-bold text-white">从需求到落地的每一步</h3>
+            </div>
+            
+            <div class="relative">
+                <!-- Connecting Line -->
+                <div class="hidden md:block absolute top-1/2 left-0 w-full h-0.5 bg-white/10 -translate-y-1/2 z-0"></div>
+                
+                <div class="grid grid-cols-1 md:grid-cols-4 gap-8 relative z-10">
+                    <!-- Step 1 -->
+                    <div class="glass-panel p-6 rounded-xl text-center hover:border-neon-blue transition-colors reveal" style="transition-delay: 100ms;">
+                        <div class="w-12 h-12 rounded-full bg-space-900 border border-neon-blue text-neon-blue flex items-center justify-center text-xl font-bold mx-auto mb-4 shadow-[0_0_15px_rgba(0,240,255,0.3)]">1</div>
+                        <h4 class="text-white font-bold mb-2">需求调研</h4>
+                        <p class="text-slate-400 text-xs">深度沟通，梳理业务痛点与技术需求。</p>
+                    </div>
+                    <!-- Step 2 -->
+                    <div class="glass-panel p-6 rounded-xl text-center hover:border-neon-purple transition-colors reveal" style="transition-delay: 200ms;">
+                        <div class="w-12 h-12 rounded-full bg-space-900 border border-neon-purple text-neon-purple flex items-center justify-center text-xl font-bold mx-auto mb-4 shadow-[0_0_15px_rgba(112,0,255,0.3)]">2</div>
+                        <h4 class="text-white font-bold mb-2">方案设计</h4>
+                        <p class="text-slate-400 text-xs">输出技术架构图与实施路线图。</p>
+                    </div>
+                    <!-- Step 3 -->
+                    <div class="glass-panel p-6 rounded-xl text-center hover:border-neon-pink transition-colors reveal" style="transition-delay: 300ms;">
+                        <div class="w-12 h-12 rounded-full bg-space-900 border border-neon-pink text-neon-pink flex items-center justify-center text-xl font-bold mx-auto mb-4 shadow-[0_0_15px_rgba(255,0,170,0.3)]">3</div>
+                        <h4 class="text-white font-bold mb-2">敏捷开发</h4>
+                        <p class="text-slate-400 text-xs">快速迭代，定期演示，确保交付质量。</p>
+                    </div>
+                    <!-- Step 4 -->
+                    <div class="glass-panel p-6 rounded-xl text-center hover:border-green-400 transition-colors reveal" style="transition-delay: 400ms;">
+                        <div class="w-12 h-12 rounded-full bg-space-900 border border-green-400 text-green-400 flex items-center justify-center text-xl font-bold mx-auto mb-4 shadow-[0_0_15px_rgba(74,222,128,0.3)]">4</div>
+                        <h4 class="text-white font-bold mb-2">运维交付</h4>
+                        <p class="text-slate-400 text-xs">部署上线，培训赋能，长期技术支持。</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Module 9: News/Insights -->
+    <section class="py-20 bg-space-800/30">
+        <div class="container mx-auto px-6">
+            <div class="flex justify-between items-end mb-10 reveal">
+                <div>
+                    <h2 class="text-neon-blue font-bold tracking-widest uppercase text-sm mb-2">前沿动态</h2>
+                    <h3 class="text-2xl font-bold text-white">科技资讯</h3>
+                </div>
+                <a href="#" class="text-slate-400 hover:text-white text-sm flex items-center gap-1">查看更多 <i data-lucide="arrow-right" size="14"></i></a>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <article class="group cursor-pointer reveal">
+                    <div class="overflow-hidden rounded-lg mb-4 h-48 relative">
+                        <img src="https://images.unsplash.com/photo-1518770660439-4636190af475?q=80&w=2070&auto=format&fit=crop" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
+                        <div class="absolute top-2 left-2 bg-neon-purple text-white text-xs font-bold px-2 py-1 rounded">AI Tech</div>
+                    </div>
+                    <div class="text-xs text-slate-500 mb-2">2025-11-20</div>
+                    <h4 class="text-white font-bold text-lg mb-2 group-hover:text-neon-blue transition-colors">星泓泰发布“天枢”企业级大模型应用平台</h4>
+                    <p class="text-slate-400 text-sm line-clamp-2">降低企业使用AI门槛，一键私有化部署，数据安全可控...</p>
+                </article>
+
+                <article class="group cursor-pointer reveal" style="transition-delay: 100ms;">
+                    <div class="overflow-hidden rounded-lg mb-4 h-48 relative">
+                        <img src="https://images.unsplash.com/photo-1563986768609-322da13575f3?q=80&w=1470&auto=format&fit=crop" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
+                         <div class="absolute top-2 left-2 bg-blue-500 text-white text-xs font-bold px-2 py-1 rounded">Industry</div>
+                    </div>
+                    <div class="text-xs text-slate-500 mb-2">2025-10-15</div>
+                    <h4 class="text-white font-bold text-lg mb-2 group-hover:text-neon-blue transition-colors">获评重庆市“专精特新”科技企业称号</h4>
+                    <p class="text-slate-400 text-sm line-clamp-2">这是对星泓泰在技术创新与市场表现的高度认可...</p>
+                </article>
+
+                <article class="group cursor-pointer reveal" style="transition-delay: 200ms;">
+                    <div class="overflow-hidden rounded-lg mb-4 h-48 relative">
+                        <img src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=2072&auto=format&fit=crop" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
+                         <div class="absolute top-2 left-2 bg-green-500 text-white text-xs font-bold px-2 py-1 rounded">Cloud</div>
+                    </div>
+                    <div class="text-xs text-slate-500 mb-2">2025-09-08</div>
+                    <h4 class="text-white font-bold text-lg mb-2 group-hover:text-neon-blue transition-colors">助力传统制造业上云，降本增效实战案例解析</h4>
+                    <p class="text-slate-400 text-sm line-clamp-2">深入剖析数字化转型中的难点与破局之道...</p>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <!-- Module 10: Contact & Footer -->
+    <footer id="contact" class="bg-space-950 pt-20 pb-10 border-t border-white/5 relative overflow-hidden">
+        <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-neon-blue via-neon-purple to-neon-pink"></div>
+        
+        <div class="container mx-auto px-6 relative z-10">
+            <div class="flex flex-col lg:flex-row gap-16 mb-16">
+                <!-- Contact Info -->
+                <div class="lg:w-1/3">
+                    <div class="flex items-center gap-2 mb-6">
+                        <div class="w-8 h-8 bg-neon-blue rounded-lg flex items-center justify-center text-space-900"><i data-lucide="cpu"></i></div>
+                        <span class="text-2xl font-bold text-white">星泓泰<span class="text-neon-blue">.</span></span>
+                    </div>
+                    <p class="text-slate-400 mb-8">期待与您携手，共创数字辉煌。</p>
+                    
+                    <div class="space-y-4">
+                        <div class="flex items-start gap-4">
+                            <div class="w-10 h-10 rounded bg-space-800 flex items-center justify-center text-neon-blue shrink-0"><i data-lucide="map-pin"></i></div>
+                            <div>
+                                <h5 class="text-white font-bold text-sm">公司地址</h5>
+                                <p class="text-slate-400 text-sm">重庆市两江新区栖霞路18号3幢1单元7-1号</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start gap-4">
+                            <div class="w-10 h-10 rounded bg-space-800 flex items-center justify-center text-neon-purple shrink-0"><i data-lucide="phone"></i></div>
+                            <div>
+                                <h5 class="text-white font-bold text-sm">咨询热线</h5>
+                                <p class="text-slate-400 text-sm">+86 15370262046</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start gap-4">
+                            <div class="w-10 h-10 rounded bg-space-800 flex items-center justify-center text-neon-pink shrink-0"><i data-lucide="mail"></i></div>
+                            <div>
+                                <h5 class="text-white font-bold text-sm">电子邮箱</h5>
+                                <p class="text-slate-400 text-sm">xinghongtai@cqxinghongtainet.asia</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Contact Form -->
+                <div class="lg:w-2/3">
+                    <div class="glass-panel p-8 rounded-2xl">
+                        <h3 class="text-xl font-bold text-white mb-6">项目咨询</h3>
+                        <form class="grid grid-cols-1 md:grid-cols-2 gap-6" onsubmit="event.preventDefault(); alert('提交成功！我们将尽快与您联系。')">
+                            <input type="text" placeholder="您的姓名" class="bg-space-900 border border-white/10 rounded-lg p-4 text-white focus:outline-none focus:border-neon-blue transition-colors">
+                            <input type="text" placeholder="联系电话" class="bg-space-900 border border-white/10 rounded-lg p-4 text-white focus:outline-none focus:border-neon-blue transition-colors">
+                            <input type="text" placeholder="公司名称" class="bg-space-900 border border-white/10 rounded-lg p-4 text-white focus:outline-none focus:border-neon-blue transition-colors md:col-span-2">
+                            <textarea rows="4" placeholder="请简要描述您的需求..." class="bg-space-900 border border-white/10 rounded-lg p-4 text-white focus:outline-none focus:border-neon-blue transition-colors md:col-span-2"></textarea>
+                            <button class="bg-gradient-to-r from-neon-blue to-neon-purple hover:opacity-90 text-white font-bold py-4 rounded-lg md:col-span-2 shadow-lg transform transition-transform hover:-translate-y-1">发送信息</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+            <div class="border-t border-white/5 pt-8 flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-slate-500">
+                <p>&copy; 2025 重庆星泓泰网络科技有限公司 版权所有</p>
+                <div class="flex gap-6">
+                    <a href="#" class="hover:text-neon-blue">隐私政策</a>
+                    <a href="#" class="hover:text-neon-blue">服务条款</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- AI Chat Widget (Tech Theme) -->
+    <div class="fixed bottom-6 right-6 z-50 flex flex-col items-end font-sans">
+        <div id="chat-window" class="hidden bg-space-900/95 backdrop-blur-xl rounded-2xl shadow-2xl w-80 md:w-96 mb-4 border border-neon-blue/30 flex flex-col overflow-hidden animate-fade-in-up ring-1 ring-neon-blue/20" style="height: 500px;">
+            <!-- Header -->
+            <div class="bg-gradient-to-r from-space-800 to-space-900 p-4 flex justify-between items-center border-b border-white/10">
+                <div class="flex items-center gap-2">
+                    <div class="relative w-2 h-2">
+                        <div class="absolute inset-0 bg-neon-blue rounded-full animate-ping"></div>
+                        <div class="relative w-2 h-2 bg-neon-blue rounded-full"></div>
+                    </div>
+                    <span class="text-white font-bold text-sm">星泓泰 AI 顾问</span>
+                </div>
+                <button onclick="toggleChat()" class="text-slate-400 hover:text-white"><i data-lucide="x" size="18"></i></button>
+            </div>
+            <!-- Messages -->
+            <div id="chat-messages" class="flex-1 overflow-y-auto p-4 space-y-4 bg-space-950">
+                <div class="flex justify-start">
+                    <div class="bg-space-800 text-slate-200 p-3 rounded-2xl rounded-tl-none text-sm border border-white/5 shadow-lg">
+                        您好！我是星泓泰的技术顾问。无论是云计算架构、大数据分析还是软件定制开发，我都可以为您解答。
+                    </div>
+                </div>
+            </div>
+            <!-- Input -->
+             <div id="api-key-input-area" class="p-3 bg-space-900 border-t border-white/10 hidden">
+                 <input type="password" id="api-key-input" class="w-full bg-space-950 border border-slate-700 text-white text-sm rounded p-2 mb-2" placeholder="输入 Google Gemini API Key">
+                 <button onclick="saveApiKey()" class="w-full bg-neon-purple hover:bg-purple-600 text-white text-xs py-2 rounded font-bold transition-colors">激活 AI 引擎</button>
+            </div>
+            <div class="p-3 bg-space-900 border-t border-white/10 flex gap-2">
+                <input type="text" id="chat-input" class="flex-1 bg-space-950 border border-white/10 text-white text-sm rounded-lg p-2 focus:outline-none focus:border-neon-blue" placeholder="输入您的问题..." onkeydown="handleChatKeyPress(event)">
+                <button onclick="sendMessage()" id="send-btn" class="p-2 bg-neon-blue/10 text-neon-blue rounded-lg hover:bg-neon-blue hover:text-space-900 transition-colors border border-neon-blue/30"><i data-lucide="send" size="18"></i></button>
+            </div>
+        </div>
+
+        <button onclick="toggleChat()" id="chat-toggle-btn" class="w-14 h-14 bg-gradient-to-br from-neon-blue to-neon-purple rounded-full shadow-[0_0_20px_rgba(0,240,255,0.4)] flex items-center justify-center text-white hover:scale-110 transition-transform animate-pulse-glow border border-white/20">
+            <i data-lucide="bot" size="28"></i>
+        </button>
+    </div>
+
+    <script type="module">
+        import { GoogleGenerativeAI } from "@google/generative-ai";
+        window.GoogleGenerativeAI = GoogleGenerativeAI;
+    </script>
+
+    <script>
+        // --- Scroll & Reveal Animations ---
+        function scrollToSection(id) {
+            const el = document.getElementById(id);
+            if (el) el.scrollIntoView({ behavior: 'smooth' });
+        }
+
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobile-menu');
+            menu.classList.toggle('hidden');
+        }
+
+        // Intersection Observer for Reveal Effects
+        const observerOptions = {
+            threshold: 0.1
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.reveal').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Navbar Frosted Glass Effect on Scroll
+        window.addEventListener('scroll', () => {
+            const nav = document.getElementById('navbar');
+            if (window.scrollY > 50) {
+                nav.classList.add('shadow-lg', 'bg-space-900/90');
+                nav.classList.remove('bg-space-900/70');
+            } else {
+                nav.classList.remove('shadow-lg', 'bg-space-900/90');
+                nav.classList.add('bg-space-900/70');
+            }
+        });
+
+        // Icons
+        lucide.createIcons();
+
+        // --- AI Chat Logic (Same logic, different UI adaptation) ---
+        let isChatOpen = false;
+        let genAI = null;
+        let chatSession = null;
+        let apiKey = localStorage.getItem('xinghongtai_api_key') || '';
+        const constApiKey = ""; // 系统环境变量，如果为空则使用用户输入
+
+        function toggleChat() {
+            const win = document.getElementById('chat-window');
+            isChatOpen = !isChatOpen;
+            if (isChatOpen) {
+                win.classList.remove('hidden');
+                setTimeout(() => document.getElementById('chat-input').focus(), 100);
+            } else {
+                win.classList.add('hidden');
+            }
+        }
+
+        // 优先使用系统key，否则显示输入框
+        if (constApiKey) {
+            apiKey = constApiKey;
+            initAI();
+        } else if (!apiKey) {
+             document.getElementById('api-key-input-area').classList.remove('hidden');
+        } else {
+             initAI();
+        }
+
+        function saveApiKey() {
+            const input = document.getElementById('api-key-input');
+            const key = input.value.trim();
+            if (key) {
+                apiKey = key;
+                localStorage.setItem('xinghongtai_api_key', key);
+                document.getElementById('api-key-input-area').classList.add('hidden');
+                initAI();
+                addMessage('model', '系统已连接，正在为您调取技术知识库...');
+            }
+        }
+
+        function initAI() {
+            if (!apiKey || !window.GoogleGenerativeAI) return;
+            try {
+                genAI = new window.GoogleGenerativeAI(apiKey);
+                const model = genAI.getGenerativeModel({
+                    model: "gemini-2.5-flash-preview-09-2025",
+                    systemInstruction: `你是一家名为"重庆星泓泰网络科技有限公司"的AI技术顾问。
+                    公司主营：云计算、大数据、AI算法定制、网络安全、IoT物联网、软件开发。
+                    风格：专业、科技感强、逻辑清晰、乐于助人。
+                    请回答关于公司技术能力、解决方案及合作方式的问题。`
+                });
+                chatSession = model.startChat();
+            } catch (e) {
+                console.error("AI Init Failed", e);
+            }
+        }
+
+        function handleChatKeyPress(e) {
+            if (e.key === 'Enter') sendMessage();
+        }
+
+        async function sendMessage() {
+            const input = document.getElementById('chat-input');
+            const text = input.value.trim();
+            if (!text) return;
+
+            addMessage('user', text);
+            input.value = '';
+            
+            const loadingId = 'loading-' + Date.now();
+            addMessage('model', '正在计算回复...', false, loadingId);
+
+            try {
+                if (!chatSession) {
+                    if(!apiKey) {
+                        updateMessage(loadingId, '请先配置 API Key 以激活智能服务。');
+                        document.getElementById('api-key-input-area').classList.remove('hidden');
+                        return;
+                    }
+                    initAI();
+                }
+                const result = await chatSession.sendMessage(text);
+                const response = result.response.text();
+                updateMessage(loadingId, response);
+            } catch (error) {
+                updateMessage(loadingId, '网络链路波动，请稍后重试。');
+                console.error(error);
+            }
+        }
+
+        function addMessage(role, text, isError = false, customId = null) {
+            const container = document.getElementById('chat-messages');
+            const div = document.createElement('div');
+            div.className = `flex ${role === 'user' ? 'justify-end' : 'justify-start'}`;
+            if(customId) div.id = customId;
+            
+            const bubble = document.createElement('div');
+            bubble.className = `max-w-[85%] p-3 rounded-2xl text-sm shadow-md ${role === 'user' 
+                ? 'bg-neon-blue text-space-900 font-medium rounded-br-none' 
+                : 'bg-space-800 text-slate-200 border border-white/10 rounded-tl-none'}`;
+            bubble.innerText = text;
+            
+            div.appendChild(bubble);
+            container.appendChild(div);
+            container.scrollTop = container.scrollHeight;
+            return customId;
+        }
+
+        function updateMessage(id, text) {
+            const el = document.getElementById(id);
+            if (el) {
+                el.querySelector('div').innerText = text;
+            }
+        }
+    </script>
+</body>
+</html>
